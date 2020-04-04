@@ -24,53 +24,19 @@ bool checkIn(int x, int y, int cx, int cy, int r) {
 void mouseCallback(ObjectID object, int x, int y, MouseAction) {
     
     if (object == problem) {
-
-        // 달
-        if (checkIn(x, y, leftX[0], Y[0], radius[0]) || checkIn(x, y, rightX[0], Y[0], radius[0])) {
-            showObject(left[0]);
-            showObject(right[0]);
+        bool wrong = true;
+        for (int i = 0; i < 7; i++) {
+            if (checkIn(x, y, leftX[i], Y[i], radius[i]) || checkIn(x, y, rightX[i], Y[i], radius[i])) {
+                showObject(left[i]);
+                showObject(right[i]);
+                wrong = false;
+            }
         }
-
-        //왼쪽상단 별빛
-        else if (checkIn(x, y, leftX[1], Y[1], radius[1]) || checkIn(x, y, rightX[1], Y[1], radius[1])) {
-            showObject(left[1]);
-            showObject(right[1]);
-        }
-
-        //3
-        else if (checkIn(x, y, leftX[2], Y[2], radius[2]) || checkIn(x, y, rightX[2], Y[2], radius[2])) {
-            showObject(left[2]);
-            showObject(right[2]);
-        }
-
-        //4
-        else if (checkIn(x, y, leftX[3], Y[3], radius[3]) || checkIn(x, y, rightX[3], Y[3], radius[3])) {
-            showObject(left[3]);
-            showObject(right[3]);
-        }
-
-        //5
-        else if (checkIn(x, y, leftX[4], Y[4], radius[4]) || checkIn(x, y, rightX[4], Y[4], radius[4])) {
-            showObject(left[4]);
-            showObject(right[4]);
-        }
-
-        //6
-        else if (checkIn(x, y, leftX[5], Y[5], radius[5]) || checkIn(x, y, rightX[5], Y[5], radius[5])) {
-            showObject(left[5]);
-            showObject(right[5]);
-        }
-
-        //7
-        else if (checkIn(x, y, leftX[6], Y[6], radius[6]) || checkIn(x, y, rightX[6], Y[6], radius[6])) {
-            showObject(left[6]);
-            showObject(right[6]);
-        }
-        else {
+        if (wrong == true) {
             endGame();
         }
     }
-
+ 
 }
 
 int main()
@@ -82,53 +48,13 @@ int main()
     locateObject(problem, scene1, 0, 0);
     showObject(problem);
 
+    for (int i = 0; i < 7; i++) {
+        left[i] = createObject("체크마크", "Images\\check.png");
+        locateObject(left[i], scene1, leftX[i] - 25, Y[i] - 25);
 
-    left[0] = createObject("체크 마크_왼1", "Images\\check.png");
-    locateObject(left[0], scene1, 546 - 25, 542 - 25);
-
-    left[1] = createObject("체크 마크_왼2", "Images\\check.png");
-    locateObject(left[1], scene1, 77 - 25, 499 - 25);
-
-
-    left[2] = createObject("체크 마크_왼3", "Images\\check.png");
-    locateObject(left[2], scene1, 361 - 25, 430 - 25);
-
-    left[3] = createObject("체크 마크_왼4", "Images\\check.png");
-    locateObject(left[3], scene1, 379 - 25, 106 - 25);
-
-    left[4] = createObject("체크 마크_왼5", "Images\\check.png");
-    locateObject(left[4], scene1, 39 - 25, 203 - 25);
-
-    left[5] = createObject("체크 마크_왼6", "Images\\check.png");
-    locateObject(left[5], scene1, 570 - 25, 369 - 25);
-
-    left[6] = createObject("체크 마크_왼7", "Images\\check.png");
-    locateObject(left[6], scene1, 298 - 25, 65 - 25);
-
-
-
-
-    right[0] = createObject("체크 마크_오1", "Images\\check.png");
-    locateObject(right[0], scene1, 1164 - 25, 542 - 25);
-
-    right[1] = createObject("체크 마크_오2", "Images\\check.png");
-    locateObject(right[1], scene1, 695 - 25, 499 - 25);
-
-    right[2] = createObject("체크 마크_오3", "Images\\check.png");
-    locateObject(right[2], scene1, 979 - 25, 430 - 25);
-
-    right[3] = createObject("체크 마크_오4", "Images\\check.png");
-    locateObject(right[3], scene1, 997 - 25, 106 - 25);
-
-    right[4] = createObject("체크 마크_오5", "Images\\check.png");
-    locateObject(right[4], scene1, 657 - 25, 203 - 25);
-
-    right[5] = createObject("체크 마크_오6", "Images\\check.png");
-    locateObject(right[5], scene1, 1188 - 25, 369 - 25);
-
-    right[6] = createObject("체크 마크_오7", "Images\\check.png");
-    locateObject(right[6], scene1, 916 - 25, 65 - 25);
-
+        right[i] = createObject("체크마크", "Images\\check.png");
+        locateObject(right[i], scene1, rightX[i] - 25, Y[i] - 25);
+    }
 
     showMessage("좌우에 틀린 곳을 찾아보세요.");
 
