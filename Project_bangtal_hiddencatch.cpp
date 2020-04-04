@@ -11,18 +11,21 @@ ObjectID problem;
 ObjectID left1;
 ObjectID right1;
 
+//주어진 좌표(x,y)가 (cx, cy)를 중심으로 반지름 r인 정사각형 내부 -> true
+bool checkIn(int x, int y, int cx, int cy, int r) {
+    return (x > cx - r && x < cx + r && y > cy - r && y < cy + r);
+}
+
 void mouseCallback(ObjectID object, int x, int y, MouseAction) {
     // 왼쪽 사각형 내부
-    if (x > 546 - 54 && x < 546 + 54 && y > 542 - 54 && y < 542 + 54) {
-        showObject(left1);
-        showObject(right1);
-    }
-    else if (x > 1164 - 54 && x < 1164 + 54 && y > 542 - 54 && y < 542 + 54) {
-        showObject(left1);
-        showObject(right1);
-    }
-    else {
-        endGame();
+    if (object == problem) {
+        if (checkIn(x, y, 546, 542, 54) || checkIn(x, y, 1164, 542, 54)) {
+            showObject(left1);
+            showObject(right1);
+        }
+        else {
+            endGame();
+        }
     }
 
 }
