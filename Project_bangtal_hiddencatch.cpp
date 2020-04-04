@@ -8,8 +8,13 @@
 SceneID scene1;
 ObjectID problem;
 
-ObjectID left1, left2, left3, left4, left5, left6, left7;
-ObjectID right1, right2, right3, right4, right5, right6, right7;
+ObjectID left[7];
+ObjectID right[7];
+
+int leftX[7] = { 546, 77, 361, 379, 39, 570, 298 };
+int rightX[7] = { 1164, 695, 979, 997, 657, 1188, 916 };
+int Y[7] = { 542, 499, 430, 106, 203, 369, 65 };
+int radius[7] = { 54, 17, 16, 27, 36, 35, 13 };
 
 //주어진 좌표(x,y)가 (cx, cy)를 중심으로 반지름 r인 정사각형 내부 -> true
 bool checkIn(int x, int y, int cx, int cy, int r) {
@@ -21,45 +26,45 @@ void mouseCallback(ObjectID object, int x, int y, MouseAction) {
     if (object == problem) {
 
         // 달
-        if (checkIn(x, y, 546, 542, 54) || checkIn(x, y, 1164, 542, 54)) {
-            showObject(left1);
-            showObject(right1);
+        if (checkIn(x, y, leftX[0], Y[0], radius[0]) || checkIn(x, y, rightX[0], Y[0], radius[0])) {
+            showObject(left[0]);
+            showObject(right[0]);
         }
 
         //왼쪽상단 별빛
-        else if (checkIn(x, y, 77, 499, 17) || checkIn(x, y, 695, 499, 17)) {
-            showObject(left2);
-            showObject(right2);
+        else if (checkIn(x, y, leftX[1], Y[1], radius[1]) || checkIn(x, y, rightX[1], Y[1], radius[1])) {
+            showObject(left[1]);
+            showObject(right[1]);
         }
 
         //3
-        else if (checkIn(x, y, 361, 430, 16) || checkIn(x, y, 979, 430, 16)) {
-            showObject(left3);
-            showObject(right3);
+        else if (checkIn(x, y, leftX[2], Y[2], radius[2]) || checkIn(x, y, rightX[2], Y[2], radius[2])) {
+            showObject(left[2]);
+            showObject(right[2]);
         }
 
         //4
-        else if (checkIn(x, y, 379, 106, 27) || checkIn(x, y, 997, 106, 27)) {
-            showObject(left4);
-            showObject(right4);
+        else if (checkIn(x, y, leftX[3], Y[3], radius[3]) || checkIn(x, y, rightX[3], Y[3], radius[3])) {
+            showObject(left[3]);
+            showObject(right[3]);
         }
 
         //5
-        else if (checkIn(x, y, 39, 203, 36)  || checkIn(x, y,657, 203, 36)) {
-            showObject(left5);
-            showObject(right5);
+        else if (checkIn(x, y, leftX[4], Y[4], radius[4]) || checkIn(x, y, rightX[4], Y[4], radius[4])) {
+            showObject(left[4]);
+            showObject(right[4]);
         }
 
         //6
-        else if (checkIn(x, y, 570, 369, 35) || checkIn(x, y, 1188, 369, 35)) {
-            showObject(left6);
-            showObject(right6);
+        else if (checkIn(x, y, leftX[5], Y[5], radius[5]) || checkIn(x, y, rightX[5], Y[5], radius[5])) {
+            showObject(left[5]);
+            showObject(right[5]);
         }
 
         //7
-        else if (checkIn(x, y, 298, 65, 13) || checkIn(x, y, 916, 65, 13)) {
-            showObject(left7);
-            showObject(right7);
+        else if (checkIn(x, y, leftX[6], Y[6], radius[6]) || checkIn(x, y, rightX[6], Y[6], radius[6])) {
+            showObject(left[6]);
+            showObject(right[6]);
         }
         else {
             endGame();
@@ -78,51 +83,51 @@ int main()
     showObject(problem);
 
 
-    left1 = createObject("체크 마크_왼1", "Images\\check.png");
-    locateObject(left1, scene1, 546 - 25, 542 - 25);
+    left[0] = createObject("체크 마크_왼1", "Images\\check.png");
+    locateObject(left[0], scene1, 546 - 25, 542 - 25);
 
-    left2 = createObject("체크 마크_왼2", "Images\\check.png");
-    locateObject(left2, scene1, 77 - 25, 499 - 25);
-
-
-    left3 = createObject("체크 마크_왼3", "Images\\check.png");
-    locateObject(left3, scene1, 361 - 25, 430 - 25);
-
-    left4 = createObject("체크 마크_왼4", "Images\\check.png");
-    locateObject(left4, scene1, 379 - 25, 106 - 25);
-
-    left5 = createObject("체크 마크_왼5", "Images\\check.png");
-    locateObject(left5, scene1, 39 - 25, 203 - 25);
-
-    left6 = createObject("체크 마크_왼6", "Images\\check.png");
-    locateObject(left6, scene1, 570 - 25, 369 - 25);
-
-    left7 = createObject("체크 마크_왼7", "Images\\check.png");
-    locateObject(left7, scene1, 298 - 25, 65 - 25);
+    left[1] = createObject("체크 마크_왼2", "Images\\check.png");
+    locateObject(left[1], scene1, 77 - 25, 499 - 25);
 
 
+    left[2] = createObject("체크 마크_왼3", "Images\\check.png");
+    locateObject(left[2], scene1, 361 - 25, 430 - 25);
+
+    left[3] = createObject("체크 마크_왼4", "Images\\check.png");
+    locateObject(left[3], scene1, 379 - 25, 106 - 25);
+
+    left[4] = createObject("체크 마크_왼5", "Images\\check.png");
+    locateObject(left[4], scene1, 39 - 25, 203 - 25);
+
+    left[5] = createObject("체크 마크_왼6", "Images\\check.png");
+    locateObject(left[5], scene1, 570 - 25, 369 - 25);
+
+    left[6] = createObject("체크 마크_왼7", "Images\\check.png");
+    locateObject(left[6], scene1, 298 - 25, 65 - 25);
 
 
-    right1 = createObject("체크 마크_오1", "Images\\check.png");
-    locateObject(right1, scene1, 1164 - 25, 542 - 25);
 
-    right2 = createObject("체크 마크_오2", "Images\\check.png");
-    locateObject(right2, scene1, 695 - 25, 499 - 25);
 
-    right3 = createObject("체크 마크_오3", "Images\\check.png");
-    locateObject(right3, scene1, 979 - 25, 430 - 25);
+    right[0] = createObject("체크 마크_오1", "Images\\check.png");
+    locateObject(right[0], scene1, 1164 - 25, 542 - 25);
 
-    right4 = createObject("체크 마크_오4", "Images\\check.png");
-    locateObject(right4, scene1, 997 - 25, 106 - 25);
+    right[1] = createObject("체크 마크_오2", "Images\\check.png");
+    locateObject(right[1], scene1, 695 - 25, 499 - 25);
 
-    right5 = createObject("체크 마크_오5", "Images\\check.png");
-    locateObject(right5, scene1, 657 - 25, 203 - 25);
+    right[2] = createObject("체크 마크_오3", "Images\\check.png");
+    locateObject(right[2], scene1, 979 - 25, 430 - 25);
 
-    right6 = createObject("체크 마크_오6", "Images\\check.png");
-    locateObject(right6, scene1, 1188 - 25, 369 - 25);
+    right[3] = createObject("체크 마크_오4", "Images\\check.png");
+    locateObject(right[3], scene1, 997 - 25, 106 - 25);
 
-    right7 = createObject("체크 마크_오7", "Images\\check.png");
-    locateObject(right7, scene1, 916 - 25, 65 - 25);
+    right[4] = createObject("체크 마크_오5", "Images\\check.png");
+    locateObject(right[4], scene1, 657 - 25, 203 - 25);
+
+    right[5] = createObject("체크 마크_오6", "Images\\check.png");
+    locateObject(right[5], scene1, 1188 - 25, 369 - 25);
+
+    right[6] = createObject("체크 마크_오7", "Images\\check.png");
+    locateObject(right[6], scene1, 916 - 25, 65 - 25);
 
 
     showMessage("좌우에 틀린 곳을 찾아보세요.");
