@@ -8,10 +8,23 @@
 SceneID scene1;
 ObjectID problem;
 
+ObjectID left1;
+ObjectID right1;
+
 void mouseCallback(ObjectID object, int x, int y, MouseAction) {
-    if (object == problem) {
+    // 왼쪽 사각형 내부
+    if (x > 546 - 54 && x < 546 + 54 && y > 542 - 54 && y < 542 + 54) {
+        showObject(left1);
+        showObject(right1);
+    }
+    else if (x > 1164 - 54 && x < 1164 + 54 && y > 542 - 54 && y < 542 + 54) {
+        showObject(left1);
+        showObject(right1);
+    }
+    else {
         endGame();
     }
+
 }
 
 int main()
@@ -22,6 +35,11 @@ int main()
     problem = createObject("problem", "Images\\problem.png");
     locateObject(problem, scene1, 0, 0);
     showObject(problem);
+
+    left1 = createObject("체크 마크_왼1", "Images\\check.png");
+    locateObject(left1, scene1, 546 - 25, 542 - 25);
+    right1 = createObject("체크 마크_오1", "Images\\check.png");
+    locateObject(right1, scene1, 1164 - 25, 542 - 25);
 
     showMessage("좌우에 틀린 곳을 찾아보세요.");
 
