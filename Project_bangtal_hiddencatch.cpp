@@ -1,17 +1,40 @@
-﻿// Project_bangtal_hiddencatch.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
+﻿/*  20200224 이원형
+    4주차 틀린그림찾기 수업내용
+*/
 
 #include <Bangtal.h>
 #pragma comment (lib, "Bangtal.lib")
 
+SceneID scene1;
+ObjectID problem;
+
+void mouseCallback(ObjectID object, int x, int y, MouseAction) {
+    if (object == problem) {
+        endGame();
+    }
+}
+
 int main()
 {
-    
-    SceneID scene1 = createScene("룸1", "배경-1.png");
+    setMouseCallback(mouseCallback);
+    scene1 = createScene("틀린그림찾기", "Images\\problem.png");
+
+    problem = createObject("problem", "Images\\problem.png");
+    locateObject(problem, scene1, 0, 0);
+    showObject(problem);
+
+    showMessage("좌우에 틀린 곳을 찾아보세요.");
+
     startGame(scene1);
-    
    
 }
+
+
+
+
+
+
+
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
 // 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
