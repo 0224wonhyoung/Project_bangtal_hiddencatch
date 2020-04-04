@@ -16,6 +16,8 @@ int rightX[7] = { 1164, 695, 979, 997, 657, 1188, 916 };
 int Y[7] = { 542, 499, 430, 106, 203, 369, 65 };
 int radius[7] = { 54, 17, 16, 27, 36, 35, 13 };
 
+bool checked[7] = { false, false, false, false, false, false, false };
+
 //주어진 좌표(x,y)가 (cx, cy)를 중심으로 반지름 r인 정사각형 내부 -> true
 bool checkIn(int x, int y, int cx, int cy, int r) {
     return (x > cx - r && x < cx + r && y > cy - r && y < cy + r);
@@ -26,16 +28,31 @@ void mouseCallback(ObjectID object, int x, int y, MouseAction) {
     if (object == problem) {
         bool wrong = true;
         for (int i = 0; i < 7; i++) {
-            if (checkIn(x, y, leftX[i], Y[i], radius[i]) || checkIn(x, y, rightX[i], Y[i], radius[i])) {
+            
+            if (!checked[i] &&(checkIn(x, y, leftX[i], Y[i], radius[i]) || checkIn(x, y, rightX[i], Y[i], radius[i]))) {
                 showObject(left[i]);
                 showObject(right[i]);
+
+                checked[i] = true;
                 wrong = false;
             }
         }
-        if (wrong == true) {
+        if (wrong) {
             endGame();
         }
+        else {
+            bool completed = true;
+            for (int i = 0; i < 7; i++) {
+                if (!checked[i]) {
+                    completed = false;
+                }
+            }
+            if (completed) {
+                endGame();
+            }
+        }
     }
+
  
 }
 
