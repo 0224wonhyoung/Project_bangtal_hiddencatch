@@ -8,8 +8,8 @@
 SceneID scene1;
 ObjectID problem;
 
-ObjectID left1;
-ObjectID right1;
+ObjectID left1, left2;
+ObjectID right1, right2;
 
 //주어진 좌표(x,y)가 (cx, cy)를 중심으로 반지름 r인 정사각형 내부 -> true
 bool checkIn(int x, int y, int cx, int cy, int r) {
@@ -17,11 +17,19 @@ bool checkIn(int x, int y, int cx, int cy, int r) {
 }
 
 void mouseCallback(ObjectID object, int x, int y, MouseAction) {
-    // 왼쪽 사각형 내부
+    
     if (object == problem) {
+
+        // 달
         if (checkIn(x, y, 546, 542, 54) || checkIn(x, y, 1164, 542, 54)) {
             showObject(left1);
             showObject(right1);
+        }
+
+        //왼쪽상단 별빛
+        else if (checkIn(x, y, 77, 499, 17) || checkIn(x, y, 695, 499, 17)) {
+            showObject(left2);
+            showObject(right2);
         }
         else {
             endGame();
@@ -39,10 +47,18 @@ int main()
     locateObject(problem, scene1, 0, 0);
     showObject(problem);
 
+
     left1 = createObject("체크 마크_왼1", "Images\\check.png");
     locateObject(left1, scene1, 546 - 25, 542 - 25);
+
+    left2 = createObject("체크 마크_왼2", "Images\\check.png");
+    locateObject(left2, scene1, 77 - 25, 499 - 25);
+
     right1 = createObject("체크 마크_오1", "Images\\check.png");
     locateObject(right1, scene1, 1164 - 25, 542 - 25);
+
+    right2 = createObject("체크 마크_오2", "Images\\check.png");
+    locateObject(right2, scene1, 695 - 25, 499 - 25);
 
     showMessage("좌우에 틀린 곳을 찾아보세요.");
 
